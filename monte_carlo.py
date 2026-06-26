@@ -16,7 +16,7 @@ def monte_carlo_simulation(ticker):
     df['Returns'] = np.log(df['Close'] / df['Close'].shift(1))
 
     # Annualize the parameters (252 trading days in a year)
-    mu = df['Returns'].mean() * 252
+    mu = (df['Returns'].mean() * 252) + (0.5 * sigma**2)
     sigma = df['Returns'].std() * np.sqrt(252)
     S0 = float(df['Close'].values.flatten()[-1]) # Use the last available stock price as starting point
 
